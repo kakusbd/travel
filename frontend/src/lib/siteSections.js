@@ -41,6 +41,11 @@ export const SECTION_META = {
   fleet_featured: { label: "Armada Unggulan", desc: "3 unit teratas dari CMS Armada.", fields: [TXT("title", "Judul"), TA("subtitle", "Subjudul")] },
   destinations_featured: { label: "Destinasi Populer", desc: "Destinasi ber-tanda populer dari CMS.", fields: [TXT("title", "Judul"), TA("subtitle", "Subjudul")] },
   testimonials: { label: "Testimoni", desc: "Testimoni tersetujui dari CMS.", fields: [TXT("title", "Judul"), TA("subtitle", "Subjudul")] },
+  gallery: {
+    label: "Galeri Momen Tamu", desc: "Grid foto perjalanan tamu (klik untuk memperbesar).",
+    fields: [TXT("eyebrow", "Eyebrow"), TXT("title", "Judul"), TA("subtitle", "Subjudul"),
+      { key: "items", label: "Foto", kind: "items", itemFields: [TXT("url", "URL gambar (Media Library)"), TXT("caption", "Keterangan")] }],
+  },
   trust: {
     label: "Sinyal Kepercayaan", desc: "4 kartu kecil (CHSE, KIR, servis, GPS).",
     fields: [{ key: "items", label: "Kartu kepercayaan", kind: "items", itemFields: [TXT("title", "Judul"), TA("text", "Deskripsi")] }],

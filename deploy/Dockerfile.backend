@@ -18,6 +18,8 @@ RUN grep -viE '^(emergentintegrations|litellm)([=<>@ ]|$)' requirements.txt > /t
 
 COPY backend /app/backend
 COPY scripts/seed_data.py /app/scripts/seed_data.py
+COPY scripts/import_content.py /app/scripts/import_content.py
+COPY content_import/assets /app/content_import/assets
 COPY deploy/create_owner.py /app/deploy/create_owner.py
 
 RUN rm -f /app/backend/.env && mkdir -p /app/backend/uploads

@@ -15,6 +15,7 @@ import StatCounter from "@/components/public/StatCounter";
 import FleetCard from "@/components/public/FleetCard";
 import DestCard from "@/components/public/DestCard";
 import BookingStepsSection from "@/components/public/BookingStepsSection";
+import PhotoGalleryGrid from "@/components/public/PhotoGalleryGrid";
 import {
   Accordion, AccordionItem, AccordionTrigger, AccordionContent,
 } from "@/components/ui/accordion";
@@ -241,6 +242,21 @@ function TestimonialsSection({ lang, d, dyn }) {
   );
 }
 
+function GallerySection({ lang, d }) {
+  const items = Array.isArray(d.items) ? d.items : [];
+  if (!items.length) return null;
+  return (
+    <section className="py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow={ov(d, "eyebrow", bi("Galeri", "Gallery", lang))}
+          title={ov(d, "title", bi("Momen perjalanan bersama tamu kami", "Moments on the road with our guests", lang))}
+          subtitle={ov(d, "subtitle", bi("Dokumentasi nyata dari trip yang telah kami dampingi — keluarga, rombongan, hingga tamu mancanegara.", "Real photos from trips we have hosted — families, groups and international guests.", lang))} />
+        <div className="mt-10"><PhotoGalleryGrid items={items} testId="home-gallery" /></div>
+      </div>
+    </section>
+  );
+}
+
 function TrustSection({ lang, d }) {
   const items = ov(d, "items", defaultTrust(lang));
   return (
@@ -311,6 +327,7 @@ export const HOME_SECTIONS = {
   fleet_featured: FleetFeaturedSection,
   destinations_featured: DestinationsFeaturedSection,
   testimonials: TestimonialsSection,
+  gallery: GallerySection,
   trust: TrustSection,
   faq: FaqSection,
   cta_band: CtaBandSection,

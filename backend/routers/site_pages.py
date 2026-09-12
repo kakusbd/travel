@@ -30,6 +30,7 @@ SECTION_FIELDS = {
     "fleet_featured": ["title", "subtitle"],
     "destinations_featured": ["title", "subtitle"],
     "testimonials": ["title", "subtitle"],
+    "gallery": ["eyebrow", "title", "subtitle", "items"],
     "trust": ["items"],
     "faq": ["title", "items"],
     "cta_band": ["title", "text", "primary_label", "primary_href",
@@ -44,7 +45,7 @@ SECTION_FIELDS = {
 PAGE_DEFS = {
     "home": {"title": "Beranda", "types": [
         "hero", "booking_steps", "value_props", "stats_band", "fleet_featured",
-        "destinations_featured", "testimonials", "trust", "faq", "cta_band"]},
+        "destinations_featured", "testimonials", "gallery", "trust", "faq", "cta_band"]},
     "about": {"title": "Tentang Kami", "types": ["page_hero", "stat_cards", "about_story"]},
     "contact": {"title": "Kontak", "types": ["page_hero", "contact_channels", "contact_cta"]},
     # Halaman daftar: hero-nya bisa di-override; isi (unit/destinasi/paket/promo/artikel)

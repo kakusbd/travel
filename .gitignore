@@ -95,3 +95,8 @@ frontend/node_modules/.cache/default-development/7.pack
 frontend/node_modules/.cache/default-development/0.pack
 frontend/node_modules/.cache/default-development/4.pack
 frontend/node_modules/.cache/default-development/3.pack
+
+# Konten mentah impor (zip & sumber besar) — hanya assets/ yang masuk repo
+content_import/src/
+content_import/*.zip
+frontend/node_modules/.cache/default-development/6.pack

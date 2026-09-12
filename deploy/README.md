@@ -35,6 +35,18 @@ cd /opt/travel && bash deploy/update.sh
 ```
 Backup otomatis → `git reset --hard origin/main` → build → ganti container. Data & `.env` aman.
 
+## 3b. Isi konten situs (foto + copywriting)
+
+Foto destinasi, galeri tamu, dan teks halaman ada di repo (`content_import/assets/`). Setelah
+`update.sh`, jalankan sekali (aman diulang — tidak menduplikasi):
+
+```bash
+cd /opt/travel && bash deploy/import_content.sh            # tambah --dry-run untuk melihat rencana
+```
+Hasil: Media Library → folder "Konten Situs"; destinasi Bromo/Yogyakarta/Bandung/Pangandaran tayang;
+Beranda punya hero + section "Galeri Momen Tamu"; hero semua halaman terisi; 3 testimoni tamu.
+Semua tetap bisa disunting dari ERP → Konten Web.
+
 ## 4. Backup / restore
 
 ```bash

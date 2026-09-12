@@ -11,6 +11,7 @@ import ScrollStory from "@/components/public/ScrollStory";
 import Reveal from "@/components/public/Reveal";
 import GlassCard from "@/components/public/GlassCard";
 import TripEstimatorInline from "@/components/public/TripEstimatorInline";
+import PhotoGalleryGrid from "@/components/public/PhotoGalleryGrid";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 const PhotoSphereTour = lazy(() => import("@/components/public/PhotoSphereTour"));
@@ -75,6 +76,7 @@ export default function DestinationDetail() {
   const route = Array.isArray(d.route_points) ? d.route_points : [];
   const hotels = Array.isArray(d.hotel_recommendations) ? d.hotel_recommendations : [];
   const scenes = Array.isArray(d.tour_scenes) ? d.tour_scenes : [];
+  const gallery = (Array.isArray(d.gallery) ? d.gallery : []).filter((g) => (typeof g === "string" ? g : g?.url) && (typeof g === "string" ? g : g.url) !== d.hero_image);
 
   return (
     <div>
@@ -104,19 +106,30 @@ export default function DestinationDetail() {
           {highlights.length === 0 ? (
             <p className="mt-3 text-[13px] text-muted-foreground" data-testid="dest-highlights-empty">{bi("Belum ada sorotan untuk destinasi ini.", "No highlights for this destination yet.", lang)}</p>
           ) : (
-            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3" data-testid="dest-highlights">
+            <div className={`mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 ${highlights.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`} data-testid="dest-highlights">
               {highlights.map((h, i) => (
                 <Reveal key={i} delay={i * 0.06}>
-                  <GlassCard className="h-full p-5">
-                    <span className="icon-chip flex h-10 w-10 items-center justify-center"><Sparkles size={18} /></span>
-                    <h3 className="mt-3 font-fraunces text-lg text-foreground">{h.title}</h3>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-muted-foreground">{h.desc}</p>
+                  <GlassCard className="h-full overflow-hidden p-0">
+                    {h.image ? <img src={h.image} alt={h.title} loading="lazy" className="h-44 w-full object-cover" data-testid={`dest-highlight-img-${i}`} /> : null}
+                    <div className="p-5">
+                      {!h.image ? <span className="icon-chip flex h-10 w-10 items-center justify-center"><Sparkles size={18} /></span> : null}
+                      <h3 className={`${h.image ? "" : "mt-3 "}font-fraunces text-lg text-foreground`}>{h.title}</h3>
+                      <p className="mt-1.5 text-[13.5px] leading-relaxed text-muted-foreground">{h.desc}</p>
+                    </div>
                   </GlassCard>
                 </Reveal>
               ))}
             </div>
           )}
         </section>
+
+        {/* GALERI FOTO */}
+        {gallery.length ? (
+          <section>
+            <h2 className="font-fraunces text-2xl text-foreground sm:text-3xl">{bi(`Galeri ${d.name}`, `${d.name} gallery`, lang)}</h2>
+            <div className="mt-5"><PhotoGalleryGrid items={gallery} testId="dest-gallery" /></div>
+          </section>
+        ) : null}
 
         {/* ITINERARY */}
         {itinerary.length ? (

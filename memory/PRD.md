@@ -37,6 +37,18 @@ Halaman yang sudah lengkap/by-design (tidak diubah): Bookings (state machine bat
 Segments, Sequences, Campaigns, Add-on, Transfer Routes, Landing Pages, CMS.
 Catatan RBAC: marketing_admin memang punya akses section 'crm' (termasuk broadcast) per permissions_config.py.
 
+## Impor konten situs (zip foto dari user) — iteration_7 lulus 11/11
+- `content_import/assets/` (7 MB, ikut repo): foto destinasi (Bandung/Bromo/Yogyakarta/Pangandaran), kartu beranda,
+  22 foto galeri tamu (auto-crop dari artboard PNG 6401px), 5 hero crop. Sumber zip & folder `src/` di-gitignore.
+- `scripts/import_content.py` (idempoten; `--dry-run`, `--force-media`, `--skip-testimonials`): unggah ke Media Library
+  (folder "Konten Situs"), upsert 4 destinasi + copywriting lengkap (intro, sorotan berfoto, itinerary, rute, FAQ, hotel,
+  SEO), Beranda (hero + section baru `gallery`), page_hero 8 halaman, 3 testimoni tamu (avatar demo pravatar dinonaktifkan).
+- Section Page Builder baru `gallery` (backend whitelist + `PhotoGalleryGrid` + Lightbox); detail destinasi kini
+  menampilkan galeri & gambar sorotan.
+- VPS: `deploy/Dockerfile.backend` menyalin skrip + assets; jalankan `bash deploy/import_content.sh` setelah `update.sh`
+  (lihat deploy/README.md §3b).
+- Folder Video & Unit Armada di zip kosong — foto armada belum ada (masih unsplash demo).
+
 ## Backlog / P1
 - Audit penyimpanan foto Media Library (permintaan awal user): cek media_store.py (disk lokal), URL gambar, orphan.
 - Rating driver: belum ada sumber data (ulasan per driver) — field disembunyikan; bisa dihitung dari testimoni/trip.

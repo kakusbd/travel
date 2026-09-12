@@ -5,7 +5,7 @@ import apiClient from "@/services/apiClient";
 // Gagal fetch / kosong → fallback urutan bawaan agar halaman TIDAK pernah blank.
 const DEFAULT_ORDER = {
   home: ["hero", "booking_steps", "value_props", "stats_band", "fleet_featured",
-    "destinations_featured", "testimonials", "trust", "faq", "cta_band"],
+    "destinations_featured", "testimonials", "gallery", "trust", "faq", "cta_band"],
   about: ["page_hero", "stat_cards", "about_story"],
   contact: ["page_hero", "contact_channels", "contact_cta"],
   fleet: ["page_hero"], destinations: ["page_hero"], packages: ["page_hero"],
